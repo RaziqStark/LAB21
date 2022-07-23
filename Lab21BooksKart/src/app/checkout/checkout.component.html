@@ -1,0 +1,160 @@
+<br>
+<br>
+<div class="container">
+    <mat-card class="mat-card mat-focus-indicator mat-elevation-z7">
+    <div class="row">
+
+        <div class="col head">
+            <mat-card-title><h2>Checkout</h2></mat-card-title>
+            
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        
+        <div class="col ">
+            <mat-card class="mat-card mat-focus-indicator mat-elevation-z7">
+            <h4>Shipping Address</h4>
+            <br>
+            
+            <form #address="ngForm" class="example-form " >
+                <div class="">
+                <mat-form-field  class="example-full-width" appearance="fill">
+                    <mat-label>Full Name</mat-label>
+
+                    <input matInput #name="ngModel" name="name" required minlength="5" type="text"
+                        placeholder="Enter Name" ngModel>
+                    <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                        <div *ngIf="name.errors?.['required']">
+                            Please Enter a valid Name
+
+                        </div>
+                        <div *ngIf="name.errors?.['minlength']">
+                            Name is not Complete
+                        </div>
+                    </div>
+                </mat-form-field>
+
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Address Line 1</mat-label>
+                    <input matInput #address1="ngModel" name="address_1" required minlength="4" type="text"
+                        placeholder="Address Line 1" ngModel>
+                    <div *ngIf="address1.touched && address1.invalid" class="alert alert-danger">
+                        <div *ngIf="address1.errors?.['required']">
+                            Please Enter a valid Address
+
+                        </div>
+                        <div *ngIf="address1.errors?.['minlength']">
+                            Address is not Complete
+                        </div>
+                    </div>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Address Line 2</mat-label>
+                    <input matInput #address2="ngModel" name="address_2" required minlength="5" type="text"
+                        placeholder="Address Line 2" ngModel>
+                    <div *ngIf="address2.touched && address2.invalid" class="alert alert-danger">
+                        <div *ngIf="name.errors?.['required']">
+                            Please Enter a valid Address
+
+                        </div>
+                        <div *ngIf="address2.errors?.['minlength']">
+                            Address is not Complete
+                        </div>
+                    </div>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Pincode</mat-label>
+                    <input matInput #pincode="ngModel" name="pincode" required minlength="6" type="number"
+                        placeholder="Enter Pincode" ngModel>
+                    <div *ngIf="pincode.touched && pincode.invalid" class="alert alert-danger">
+                        <div *ngIf="pincode.errors?.['required']">
+                            Please Enter a valid Pincode
+
+                        </div>
+                        <div *ngIf="name.errors?.['minlength']">
+                            Pincode is not Complete
+                        </div>
+                    </div>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>State</mat-label>
+                    <input matInput #state="ngModel" name="state" required minlength="6" type="text"
+                        placeholder="Enter State" ngModel>
+                    <div *ngIf="state.touched && state.invalid" class="alert alert-danger">
+                        <div *ngIf="pincode.errors?.['required']">
+                            Please Enter a valid State Name
+
+                        </div>
+                        <div *ngIf="name.errors?.['minlength']">
+                            State Name is not Complete
+                        </div>
+                    </div>
+                    <br>
+                </mat-form-field>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-success" routerLink="/">Place Order</button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger" routerLink="/">Cancel</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        
+        </mat-card>
+        </div>
+        
+        <div class="col">
+        <mat-card class="mat-card mat-focus-indicator mat-elevation-z7">
+            <h4>Order Summary</h4>
+            
+
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-warning">
+
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>MRP</th>
+                        <th>Total</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of shoppingList">
+
+                        <td><a routerLink="" >{{data.book.title}}</a></td>
+
+                        <td>{{data.quantity}}</td>
+                        <td>{{data.book.price|currency:'INR'}}</td>
+                        <td>{{data.book.price*data.quantity
+                            |currency:'INR'}}{{getTotalCost(data.book.price*data.quantity)}}</td>
+                        
+                        
+
+
+
+
+                    </tr>
+                </tbody>
+            </table>
+            <section><b>Grand Total : {{grandTotal|currency:'INR'}}{{setTotalCost()}}</b>
+                
+            </section>
+        </mat-card>
+        </div>
+
+    </div>
+</mat-card>
+</div>
